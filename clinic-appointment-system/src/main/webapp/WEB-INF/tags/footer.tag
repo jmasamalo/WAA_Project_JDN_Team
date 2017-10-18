@@ -6,14 +6,12 @@
 	</ul>
 	<p>
 		Developed by
-		<strong>Bimarsh Neupane</strong>,
-		<strong>Lam Nguyen</strong>,
-		<strong>Pukar Mainali</strong>, and
-		<strong>Saint Paul Tinga</strong>
-		with all the love in CS545 course.
+		<strong>John</strong>,
+		<strong>Deepa</strong>, and
+		<strong>Niroj</strong>
 	</p>
 	<p>
-		Special thank to <strong>Professor Joe Bruen</strong> for all
-		of the guidances throughout the project.
+		Special thank to <strong>Professor Rijuan Xing (Tina)</strong> for the
+		support and guidance
 	</p>
 </div>
