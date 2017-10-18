@@ -23,7 +23,7 @@ import edu.mum.waa.exceptions.AppointmentExceptions;
 import edu.mum.waa.service.AppointmentService;
 import edu.mum.waa.service.DoctorService;
 import edu.mum.waa.service.PatientService;
-
+   
 @Controller
 public class AppointmentController {
 	@Autowired
