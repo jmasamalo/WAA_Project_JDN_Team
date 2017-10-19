@@ -10,8 +10,8 @@
 			<a href="<spring:url value='/login' />">Login</a>
 		</security:authorize>
 		<security:authorize access="isAuthenticated()">
-			<span>Hi, <strong>${currentUser.username}</strong>!</span>
-			<a id="logout" onclick="document.getElementById('logout-form').submit();">Logout</a>
+			<span><i><strong>User: <security:authentication property="principal.username" /></strong></i></span>
+			&nbsp;&nbsp;&nbsp;><i><a id="logout" onclick="document.getElementById('logout-form').submit();">Logout</a></i>
 			<form id="logout-form" action="<spring:url value="/logout"></spring:url>" method="post" class="hidden">
 				<security:csrfInput />
 			</form>
