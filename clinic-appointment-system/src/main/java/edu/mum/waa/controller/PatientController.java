@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.mum.waa.domain.Patient;
 import edu.mum.waa.domain.Prescription;
 import edu.mum.waa.domain.User;
+import edu.mum.waa.service.AppointmentService;
 import edu.mum.waa.service.PatientService;
 import edu.mum.waa.service.PrescriptionService;
 
@@ -25,6 +26,9 @@ public class PatientController {
 
 	@Autowired
 	PrescriptionService pService;
+	
+	@Autowired
+	AppointmentService appointmentService;
 
 	@RequestMapping(value = "/patient/medicalReport", method = RequestMethod.GET)
 	public String getPatientPrescription(Model model) {
@@ -52,5 +56,12 @@ public class PatientController {
 	@RequestMapping(value = "/registerPatientSuccess", method = RequestMethod.GET)
 	public String successMessage() {
 		return "registerPatientSuccess";
+	}
+	
+	@RequestMapping(value = "/patient/appointment/status", method = RequestMethod.GET)
+	public String appointmentStatus(Model model) {
+		User user = ControllerHelper.getCurrentUser();
+		model.addAttribute("appointments", appointmentService.findByPatientEmail(user.getUsername()));
+		return "appointmentStatus";
 	}
 }

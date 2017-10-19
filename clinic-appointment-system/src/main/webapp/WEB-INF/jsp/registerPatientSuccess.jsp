@@ -14,8 +14,8 @@
 <body>
 	<tags:header></tags:header>
 	<div id="main">
-		<h1>Thank You!</h1>
-		<p>Thank you for your registration. Please <a href="<spring:url value="/login"></spring:url>">click here</a> to go to the login page.</p>  				
+		<h2>Successful registered!</h2>
+		<p>Please <a href="<spring:url value="/login"></spring:url>">login</a> to make an appointment.</p>  				
 	</div>
 	<tags:footer></tags:footer>
 	<tags:basejs></tags:basejs>

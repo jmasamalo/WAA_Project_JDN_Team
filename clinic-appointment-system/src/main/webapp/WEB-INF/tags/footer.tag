@@ -1,9 +1,9 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <div id="footer">
-	<ul>
+	<!-- <ul>
 		<li><a href="#">About</a></li>
 		<li><a href="#">Contact Us</a></li>
-	</ul>
+	</ul> -->
 	<p>
 		Developed by
 		<strong>John</strong>,

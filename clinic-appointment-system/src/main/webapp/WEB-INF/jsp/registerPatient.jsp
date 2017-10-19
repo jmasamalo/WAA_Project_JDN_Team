@@ -88,7 +88,7 @@
 					tabindex="4"> 
 					<input id="submit" type="submit"
 					tabindex="5"
-					value="<spring:message code="savePatient.form.add.label"/>">
+					value="<spring:message code="savePatient.form.submit.label"/>">
 			</p>
 		</form:form>
 	</div>

@@ -39,4 +39,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 		appointmentRepository.save(appointment);
 		
 	}
+
+	@Override
+	public List<Appointment> findByPatientEmail(String email) {
+		ArrayList<Appointment> appointments = new ArrayList<Appointment>();
+		appointmentRepository.findByPatientEmail(email).forEach(appointments::add);
+		return appointments;
+	}
 }

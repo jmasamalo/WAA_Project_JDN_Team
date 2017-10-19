@@ -3,7 +3,7 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <div id="header">
-	<a id="root-link" href="<c:url value="/" />">Clinic Appointment System</a>
+	<a id="root-link" href="<c:url value="/" />">CLINIC APPOINTMENT SYSTEM</a>
 	<div class="tools">
 		<security:authorize access="isAnonymous()">
 			<a href="<spring:url value="/registerPatient"></spring:url>">Sign Up</a> |

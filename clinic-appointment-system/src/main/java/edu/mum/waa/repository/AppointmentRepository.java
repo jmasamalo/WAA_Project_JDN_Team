@@ -11,4 +11,7 @@ import edu.mum.waa.domain.Appointment;
 public interface AppointmentRepository extends CrudRepository<Appointment, Long> {
 	@Query("SELECT a FROM appointment a INNER JOIN a.doctor d WHERE d.email = :email")
 	Iterable<Appointment> findByDoctorEmail(@Param("email") String email);
+	
+	@Query("SELECT a FROM appointment a INNER JOIN a.patient p WHERE p.email = :email")
+	Iterable<Appointment> findByPatientEmail(@Param("email") String email);
 }

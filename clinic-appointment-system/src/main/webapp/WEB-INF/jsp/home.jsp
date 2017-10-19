@@ -12,9 +12,12 @@
 <body>
 	<tags:header></tags:header>
 	<div id="main">
-		<h1>Welcome to Clinic Appointment System!</h1>
+		<!-- <h2>Welcome!</h2> -->
 		<c:if test="${empty currentUser}">
-			<p>You can log in with one of the following demo accounts:</p>
+		<p>The clinic Appointment system is developed to simplify the communication 
+		process between a patient, a receptionist, and a doctor.  
+		Mainly we have automate the clinic appointment process.</p>
+			<p>Demo accounts:</p>
 			<ul>
 				<li>admin@mum.edu/admin</li>
 				<li>doctor@mum.edu/doctor</li>

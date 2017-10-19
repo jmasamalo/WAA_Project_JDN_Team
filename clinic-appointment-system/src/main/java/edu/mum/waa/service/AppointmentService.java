@@ -8,5 +8,6 @@ public interface AppointmentService {
 	public List<Appointment> findAll();
 	public Appointment findById(long id);
 	public List<Appointment> findByDoctorEmail(String email);
+	public List<Appointment> findByPatientEmail(String email);
 	public void save(Appointment appointment);
 }

@@ -71,11 +71,11 @@
 <body>
 	<tags:header></tags:header>
 	<div id="main">
-		<h1>Clinic Appointment Login</h1>
+		<!-- <h1>Clinic Appointment Login</h1> -->
 
 
 		<div class="login-section">
-			<h2>Sign in</h2>
+			<h2>Login</h2>
 			<form id="loginForm"
 				action="<spring:url value="/login"></spring:url>" method="post">
 
