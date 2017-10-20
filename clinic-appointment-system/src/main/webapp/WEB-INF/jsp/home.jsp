@@ -16,7 +16,7 @@
 		<c:if test="${empty currentUser}">
 		<p>The clinic Appointment system is developed to simplify the communication 
 		process between a patient, a receptionist, and a doctor.  
-		Mainly we have automate the clinic appointment process.</p>
+		This is an automation of the clinic appointment process.</p>
 			<p>Demo accounts:</p>
 			<ul>
 				<li>admin@mum.edu/admin</li>
