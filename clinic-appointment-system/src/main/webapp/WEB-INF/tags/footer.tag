@@ -11,7 +11,7 @@
 		<strong>Niroj</strong>
 	</p>
 	<p>
-		Special thank to <strong>Professor Rijuan Xing (Tina)</strong> for the
+		Special thank to <strong>Professor Rujuan (Tina) Xing</strong> for the
 		support and guidance
 	</p>
 </div>
