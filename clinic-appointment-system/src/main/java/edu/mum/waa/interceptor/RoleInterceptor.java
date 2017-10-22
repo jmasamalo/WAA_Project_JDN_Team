@@ -14,7 +14,7 @@ import edu.mum.waa.domain.User;
 import edu.mum.waa.domain.UserRoles;
 
 public class RoleInterceptor extends HandlerInterceptorAdapter {
-	// Helps render "Hi, username!" in header.tag file.
+	// Helps render "User: username!" in header.tag file.
 	// Also useful to other conditional checking.
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
