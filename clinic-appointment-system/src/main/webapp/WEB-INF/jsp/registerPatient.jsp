@@ -15,13 +15,13 @@
 <body>
 	<tags:header></tags:header>
 	<div id="main">
-		<h1>Sign Up</h1>
+		<h3>Patient Sign Up Form</h3> <hr />
 		<form:form modelAttribute="newPatient" action="registerPatient" method="post">
 			<div>
 				<form:errors path="*" cssClass="error" />
 			</div>
 			<div id="account-info">
-				<h2>Account Information</h2>
+				<h3>Account Information</h3>
 				<p>
 					<label for="firstName" class="field-label"><spring:message code="savePatient.form.fname.label" /></label>
 					<form:input path="firstName" />
@@ -59,7 +59,7 @@
 				</p>
 			</div>
 			<div id="address-info">
-				<h2>Address Information</h2>
+				<h3>Address Information</h3>
 				<p>
 					<label for="street" class="field-label"><spring:message code="address.street" /></label>
 					<form:input path="address.street" id="street" />
@@ -83,10 +83,12 @@
 				</p>
 			</div>
 			<p id="button-panel">
-				<input id="reset" type="reset"
+			
+			<hr />
+				<input id="reset" type="reset" class="btn btn-primary"
 					value="<spring:message code="savePatient.form.reset.label"/>"
 					tabindex="4"> 
-					<input id="submit" type="submit"
+					<input id="submit" type="submit" class="btn btn-primary"
 					tabindex="5"
 					value="<spring:message code="savePatient.form.submit.label"/>">
 			</p>

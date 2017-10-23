@@ -30,6 +30,7 @@ public class ReceptionistServiceImpl implements ReceptionistService {
 		user.setRole(UserRoles.ROLE_RECEPTIONIST);
 		user.setEnabled(true);
 		user.setPassword(passworEncoder.encode(user.getPassword()));
+		receptionist.setEnabled(true);
 		return receptionistRepository.save(receptionist);
 	}
 	
@@ -62,5 +63,23 @@ public class ReceptionistServiceImpl implements ReceptionistService {
 	@Override
 	public List<Receptionist> findAllActive() {
 		return receptionistRepository.findAllActive();
+	}
+
+//	@Override
+//	public List<Receptionist> findAll() {
+//		// TODO Auto-generated method stub
+//		return (List<Receptionist>) receptionistRepository.findAll();
+//	}
+
+	@Override
+	public Receptionist findOne(long id) {
+		// TODO Auto-generated method stub
+		return receptionistRepository.findOne(id);
+	}
+
+	@Override
+	public User getUserFromReceptionist(long id) {
+		// TODO Auto-generated method stub
+		return receptionistRepository.getUserFromReceptionist(id);
 	}
 }

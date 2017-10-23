@@ -3,10 +3,14 @@ package edu.mum.waa.service;
 import java.util.List;
 
 import edu.mum.waa.domain.Receptionist;
+import edu.mum.waa.domain.User;
 
 public interface ReceptionistService {
 	Receptionist add(Receptionist receptionist);
 	Receptionist edit(Receptionist receptionist);
 	void delete(long id);
 	List<Receptionist> findAllActive();
+	//List<Receptionist> findAll();
+	Receptionist findOne(long id);
+	User getUserFromReceptionist(long id);
 }

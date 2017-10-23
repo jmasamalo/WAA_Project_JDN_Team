@@ -14,7 +14,7 @@
 <body>
 	<tags:header></tags:header>
 	<div id="main">
-		<h2>Successful registered!</h2>
+		<h3>Successful registered!</h3>
 		<p>Please <a href="<spring:url value="/login"></spring:url>">login</a> to make an appointment.</p>  				
 	</div>
 	<tags:footer></tags:footer>

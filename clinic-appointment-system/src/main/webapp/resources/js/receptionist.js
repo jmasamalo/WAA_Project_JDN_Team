@@ -1,6 +1,6 @@
 /**
  * 
- */
+ *//*
 $(function() {
 	// CSRF Registration for Ajax requests
 	var token = $("meta[name='_csrf']").attr("content");
@@ -148,4 +148,4 @@ $(function() {
 			}
 		});
 	});
-});
+});*/
