@@ -16,7 +16,7 @@
 	<tags:header></tags:header>
 	<div id="main">
 		<h3>Patient Sign Up Form</h3> <hr />
-		<form:form modelAttribute="newPatient" action="registerPatient" method="post">
+		<form:form modelAttribute="newPatient" action="registerPatient" method="post" enctype="multipart/form-data">
 			<div>
 				<form:errors path="*" cssClass="error" />
 			</div>
@@ -82,15 +82,25 @@
 					<form:errors path="address.zipCode" cssClass="error" />
 				</p>
 			</div>
+			
+			<div id="PassportSizePhoto">
+				<h3>Passport Size Photo</h3>
+				<p>
+					<label for="photo" class="field-label"><spring:message code="PassportSizePhoto" /></label>
+					<form:input path="photo" id="photo" type="file" class="form:input-large" />
+					<form:errors path="photo" cssClass="error" />
+				</p>
+			</div>
+			
 			<p id="button-panel">
 			
-			<hr />
+			<hr>
 				<input id="reset" type="reset" class="btn btn-primary"
 					value="<spring:message code="savePatient.form.reset.label"/>"
-					tabindex="4"> 
+					tabindex="4" /> 
 					<input id="submit" type="submit" class="btn btn-primary"
 					tabindex="5"
-					value="<spring:message code="savePatient.form.submit.label"/>">
+					value="<spring:message code="savePatient.form.submit.label"/>" />
 			</p>
 		</form:form>
 	</div>

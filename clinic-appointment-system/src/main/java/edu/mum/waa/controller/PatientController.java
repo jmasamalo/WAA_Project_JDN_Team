@@ -1,7 +1,10 @@
 package edu.mum.waa.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.mum.waa.domain.Patient;
 import edu.mum.waa.domain.Prescription;
@@ -45,11 +49,39 @@ public class PatientController {
 	}
 
 	@RequestMapping(value = "/registerPatient", method = RequestMethod.POST)
-	public String savePatient(@Valid @ModelAttribute("newPatient") Patient patient, BindingResult result) {
+	public String savePatient(@Valid @ModelAttribute("newPatient") Patient patient, BindingResult result, HttpServletRequest request) throws FileNotFoundException {
 		if (result.hasErrors()) {
 			return "registerPatient";
 		}
-		patientService.save(patient);
+		
+		MultipartFile image = patient.getPhoto();
+ 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+ 		
+ 		String imageFileType = image.getName().split(".")[1].toLowerCase();
+ 		//System.out.println(imageFileType);
+ 		boolean imageFileTypeValid = false;
+ 		if(imageFileType.equals("jpg") || 
+ 				imageFileType.equals("jpeg") || 
+ 				imageFileType.equals("png") ||
+ 				imageFileType.equals("gif")) {
+ 			imageFileTypeValid = true;
+ 		}
+ 		
+
+		//save before image saving to obtain the auto-generated id
+ 		Patient savedPatient = patientService.save(patient);
+ 			
+		//isEmpty means file exists BUT NO Content
+			if (image!=null && !image.isEmpty() && imageFileTypeValid) {
+		       try {
+		    	   image.transferTo(new File(rootDirectory+"\\resources\\images\\"+ savedPatient.getId() + ".png"));
+		       } catch (Exception e) {
+		    	   //rollback the save
+		    	   patientService.delete(savedPatient); 
+		    	   throw new FileNotFoundException("Unable to save image: " + image.getOriginalFilename() );
+		       }
+		   }
+
 		return "redirect:/registerPatientSuccess";
 	}
 

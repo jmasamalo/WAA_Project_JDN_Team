@@ -1,9 +1,5 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <div id="footer">
-	<!-- <ul>
-		<li><a href="#">About</a></li>
-		<li><a href="#">Contact Us</a></li>
-	</ul> -->
 	<p>
 		Developed by
 		<strong>John</strong>,
@@ -11,7 +7,7 @@
 		<strong>Niroj</strong>
 	</p>
 	<p>
-		Special thank to <strong>Professor Rujuan (Tina) Xing</strong> for the
+		Special thanks to <strong>Professor Rujuan (Tina) Xing</strong> for the
 		support and guidance
 	</p>
 </div>
