@@ -57,6 +57,9 @@ body {
 	padding-bottom: 10px;
 	min-height: 150px;
 	box-sizing: border-box;
+	position:absolute;
+	bottom:0px;
+	width:100%;
 }
 
 #footer ul {

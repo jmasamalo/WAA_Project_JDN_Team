@@ -20,9 +20,9 @@
 		</div>
 		<h1>List of Receptionists</h1>
 		<p>
-			<button id="add-receptionist">Add Receptionist</button>
+			<a href="<c:url value='receptionist/addReceptionist'/>">Add Receptionist</a>
 		</p>
-		<table>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>First Name</th>
@@ -39,39 +39,13 @@
 						<td>${receptionist.lastName}</td>
 						<td>${receptionist.email}</td>
 						<td>
-							<a class="edit" data-id="${receptionist.id}">Edit</a> |
-							<a class="delete" data-id="${receptionist.id}">Delete</a>
+							<a class="edit" href="receptionist/addReceptionist/${receptionist.id}">Edit</a> |
+							<a class="delete" href="receptionist/deleteReceptionist/${receptionist.id}">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<div id="receptionist-modal" class="modal">
-			<div class="modal-content">
-				<span class="close">&times;</span>
-				<input type="hidden" id="app-path" value="<c:url value='/'/>" />
-				<input type="hidden" id="receptionistId" />
-				<input type="hidden" id="userId" />
-				<h1 class="modal-title">Add New Receptionist</h1>
-				<p>
-					<label for="firstName" class="field-label">First Name</label>
-					<input type="text" id="firstName" name="firstName" />
-				</p>
-				<p>
-					<label for="lastName" class="field-label">Last Name</label>
-					<input type="text" id="lastName" name="lastName" />
-				</p>
-				<p>
-					<label for="email" class="field-label">Email</label>
-					<input type="text" id="email" name="email" />
-				</p>
-				<p>
-					<label for="password" class="field-label">Password</label>
-					<input type="password" id="password" name="password" />
-				</p>
-				<button id="save-receptionist">Save</button>
-			</div>
-		</div>
 	</div>
 	<tags:footer></tags:footer>
 	<tags:basejs></tags:basejs>
