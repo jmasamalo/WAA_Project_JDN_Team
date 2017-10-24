@@ -61,43 +61,43 @@ public class PatientController {
 		
 		MultipartFile image = patient.getPhoto();
  		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-		//String rootDirectory = request.getSession().getServletContext().getContextPath();
  		
- 		/*String imageFileType = image.getOriginalFilename().split(".")[1].toLowerCase();
- 		//System.out.println(imageFileType);
- 		boolean imageFileTypeValid = false;
- 		if(imageFileType.equals("jpg") || 
- 				imageFileType.equals("jpeg") || 
- 				imageFileType.equals("png") ||
- 				imageFileType.equals("gif")) {
- 			imageFileTypeValid = true;
- 		}*/
- 		
+ 		//isEmpty means file exists BUT NO Content
+		if(image!=null && !image.isEmpty()) {
+	 		String imageFileName = image.getOriginalFilename().toLowerCase();
+	 		String acceptedFileExtentions  = ".jpg .png .gif";
+	 		int lastIndex = imageFileName.lastIndexOf('.');
+	 		String imageFileExtension = imageFileName.substring(lastIndex, imageFileName.length());
+	 		
+	 		if(acceptedFileExtentions.contains(imageFileExtension)) {
+				//imageValid = true;
+				
+				//save before image saving to obtain the auto-generated id
+				Patient savedPatient = patientService.save(patient);
+				String destinationImage = rootDirectory+"\\resources\\images\\"+ savedPatient.getLastName()+"_"+ savedPatient.getId() + ".jpg";
+	 	 	   
+				try {
+					image.transferTo(new File(destinationImage));
+				} catch (Exception e) {
+					//rollback the save
+					patientService.delete(savedPatient); 
+					throw new FileNotFoundException("Unable to save file: " + image.getOriginalFilename());
+				}
+								
+				redirectAttributes.addFlashAttribute("patient", savedPatient);
 
+				return "redirect:/registerPatientSuccess";
 
-	   	//save before image saving to obtain the auto-generated id
-		Patient savedPatient = patientService.save(patient);
-		
-		String destinationImage = rootDirectory+"\\resources\\images\\"+ savedPatient.getLastName()+"_"+ savedPatient.getId() + ".jpg";
- 		//String destinationImage = rootDirectory+"resources\\images\\temp.jpg";
- 		System.out.println(destinationImage);
-		//isEmpty means file exists BUT NO Content
-		if (image!=null && !image.isEmpty()) { //&& imageFileTypeValid) {
-	       try {
-	    	   image.transferTo(new File(destinationImage));
-	       } catch (Exception e) {
-	    	   //rollback the save
-	    	   patientService.delete(savedPatient); 
-	    	   throw new FileNotFoundException("Unable to save image: " + image.getOriginalFilename());
-	       }
-	   }
-		
-		model.addAttribute("destinationImage",destinationImage);
-		
-		redirectAttributes.addFlashAttribute("patient", savedPatient);
-			
-		//return "registerPatient";
-		return "redirect:/registerPatientSuccess";
+	 		}else {
+	 			model.addAttribute("imgError", true);
+	 		}
+	 		
+
+		}else {
+ 			model.addAttribute("imgError", true);
+ 		}
+	
+		return "registerPatient";
 	}
 
 	@RequestMapping(value = "/registerPatientSuccess", method = RequestMethod.GET)

@@ -16,6 +16,8 @@
 	<div id="main">
 		<h4><spring:message code="savePatient.form.success" /></h4>
 		
+		<c:if test="${not empty patient}">
+			
 			<div id="account-info">
 				<h3><spring:message code="savePatient.form.AccountInfo" /></h3>
 				<p>
@@ -66,7 +68,9 @@
 				
 				</p>
 			</div>
-			<p id="button-panel">
+			
+		</c:if>
+					<p id="button-panel">
 			
 			<hr>
 			Please <a href="<spring:url value="/login"></spring:url>">login</a> to make an appointment.

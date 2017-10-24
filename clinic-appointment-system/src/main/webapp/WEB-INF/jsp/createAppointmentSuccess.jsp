@@ -18,12 +18,12 @@
 		<div class="page-tools">
 			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
 		</div>
-		<h1>Thank You!</h1>
+		<h3>Thank You!</h3>
 		<c:if test="${not empty appointment.patient}">
 			<p>Name: <strong>${appointment.patient.firstName}</strong></p>
 		    <p>Description : <strong>${appointment.description}</strong></p>
+			<p>Your appointment has been created. We will get back to you soon!</p>
 		</c:if>
-		<p>Your appointment has been created. We will get back to you soon!</p>
 		<p>	Click <a href="<c:url value="/" />">here</a> to go back!</p>			
 	</div>
 	<tags:footer></tags:footer>

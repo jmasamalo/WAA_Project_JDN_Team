@@ -18,7 +18,7 @@
 		<div class="page-tools">
 			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
 		</div>
-		<h3>Make an Appointment</h3>
+		<h3>Make Appointment</h3>
 		<hr>
 		<form:form modelAttribute="appointment" action="create" method="post">
 			<div id="appointment-info">

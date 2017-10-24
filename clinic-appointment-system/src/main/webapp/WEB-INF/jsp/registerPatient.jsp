@@ -16,11 +16,14 @@
 <body>
 	<tags:header></tags:header> 
 	<div id="main">
+		<!-- ?${_csrf.parameterName}=${_csrf.token} -->
 		<h3><spring:message code="savePatient.form.title" /></h3> <hr />
 		<form:form modelAttribute="newPatient" action="registerPatient?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 			<div>
 				<form:errors path="*" cssClass="error" />
 			</div>
+			
+			
 			<div id="account-info"> 
 				<h3><spring:message code="savePatient.form.AccountInfo" /></h3>
 				<p>
@@ -91,11 +94,18 @@
 					<form:input path="photo" id="photo" type="file" class="form:input-large" />
 					<form:errors path="photo" cssClass="error" />
 				</p>
+				<c:if test="${not empty imgError}">
+					<p class="error">
+						<spring:message code="PassportSizePhotoError" />
+					</p>
+				</c:if>
 			</div>
 			
 			<p id="button-panel">
 			
 			<hr />
+				
+				<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
 				<input id="reset" type="reset" class="btn btn-primary"
 					value="<spring:message code="savePatient.form.reset.label"/>"
 					tabindex="4" /> 
