@@ -10,11 +10,6 @@ import edu.mum.waa.exceptions.AppointmentExceptions;
 
 @ControllerAdvice
 public class ControllerException {
-	@ExceptionHandler(Exception.class)
-	public String handlecommonExceptions(Exception e, Model model) {
-		model.addAttribute("err", false);
-		return "error";
-	}
 
 	@ExceptionHandler(AppointmentExceptions.class)
 	public String handleappointmentExceptions(Exception e, Model model) {
@@ -25,6 +20,12 @@ public class ControllerException {
 	@ExceptionHandler(FileNotFoundException.class)
 	public String handleFileExceptions(Exception e, Model model) {
 		model.addAttribute("img", false);
+		return "error";
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public String handlecommonExceptions(Exception e, Model model) {
+		model.addAttribute("err", false);
 		return "error";
 	}
 }

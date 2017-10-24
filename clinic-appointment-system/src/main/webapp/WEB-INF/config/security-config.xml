@@ -55,7 +55,7 @@
 		<!-- enable remember me -->
 		<security:remember-me data-source-ref="dataSource" token-validity-seconds="86400" remember-me-parameter="rememberMe" />
 		<!-- Version 4.0 + enables CSRF so if we want to disable -->
-		<!-- <security:csrf disabled="true"/> -->
+		<security:csrf disabled="false"/>
 	</security:http>
 	<!-- Database security "custom queries are because we have used our own schema... -->
 	<security:authentication-manager alias="authenticationManager">

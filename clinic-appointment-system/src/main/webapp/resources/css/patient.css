@@ -43,3 +43,11 @@ input[type="text"], input[type="password"] {
 	display: inline-block;
 	vertical-align: middle;
 }
+
+.imgRounded{
+	border-radius: 150px;
+}
+
+hr{
+	border: 1px solid #fcc9f5;
+}

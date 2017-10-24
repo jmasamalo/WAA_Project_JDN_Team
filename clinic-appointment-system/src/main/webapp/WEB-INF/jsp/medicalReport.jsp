@@ -10,8 +10,7 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Clinic Appointment System</title>
 <tags:basecss></tags:basecss>
-<link href="<c:url value='/resources/css/modal.css'/>" rel="stylesheet" />
-<link href="<c:url value='/resources/css/doctor.css'/>" rel="stylesheet" />
+<link href="<c:url value='/resources/css/patient.css'/>" rel="stylesheet" />
 </head>
 <body>
 	<tags:header></tags:header>
@@ -19,15 +18,16 @@
 		<div class="page-tools">
 			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
 		</div>
-		<h1>Your Medical History</h1>
-		<table>
+		<h3>Medical History</h3>
+		<hr>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>Date</th>
 					<th>Symptomps</th>
-					<th>diagnosis</th>
-					<th>medication</th>
-					<th>dosages</th>
+					<th>Diagnosis</th>
+					<th>Medication</th>
+					<th>Dosages</th>
 				</tr>
 			</thead>
 			<tbody id="prescription-list">

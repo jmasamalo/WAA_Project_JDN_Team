@@ -15,8 +15,9 @@
 		<div class="page-tools">
 			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
 		</div>
-		<h1>List of Appointments</h1>
-		<table>
+		<h3>List of Appointments</h3>
+		<hr>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>id</th>
