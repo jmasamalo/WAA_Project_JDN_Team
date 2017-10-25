@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib  uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +16,21 @@
 <body>
 	<tags:header></tags:header>
 	<div id="main">
-		<h1>Oops! It seems everybody wants to see a doctor today!</h1>		
+
+		<c:if test="${not empty img}">
+			<p class="error">
+				Please note: We support jpg, png, or gif image types.
+			</p>
+		</c:if>
+		<c:if test="${not empty err}">
+			<p class="error">
+			Oops! It seems everybody wants to see a doctor today!
+			</p>
+		</c:if>			
+	
         <c:forEach items="${exception.stackTrace}" var="ste">    ${ste} 
     </c:forEach>	
+
 	</div>
 	<tags:footer></tags:footer>
 	<tags:basejs></tags:basejs>

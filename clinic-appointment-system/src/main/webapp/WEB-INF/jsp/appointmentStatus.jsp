@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib  uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
@@ -13,17 +15,18 @@
 	<tags:header></tags:header>
 	<div id="main">
 		<div class="page-tools">
-			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
+			<a class="go-back" href="<c:url value='/home' />"><spring:message code="GoBack" /></a>
 		</div>
-		<h1>List of Appointments</h1>
-		<table>
+		<h3><spring:message code="AppointmentStatus" /></h3>
+		<hr>
+		<table class="table">
 			<thead>
 				<tr>
-					<th>id</th>
-					<th>Patient Name</th>
-					<th>Description</th>
-					<th>Appointment Status</th>
-					<th>Appointment Date</th>
+					<th><spring:message code="AppointmentID" /></th>
+					<th><spring:message code="AppointmentPatientName" /></th>
+					<th><spring:message code="AppointmentDescription" /></th>
+					<th><spring:message code="AppointmentStatus" /></th>
+					<th><spring:message code="AppointmentDate" /></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -33,7 +36,7 @@
 						<td>${appointment.patient.firstName}</td>
 						<td>${appointment.description}</td>
 						<td>${appointment.bookingtype}</td>
-						<td>${appointment.date}</td>
+						<td><fmt:formatDate pattern="MM-dd-yyyy HH:mm" value="${appointment.date}" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>

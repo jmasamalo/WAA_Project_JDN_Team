@@ -16,9 +16,10 @@
 	<tags:header></tags:header>
 	<div id="main">
 		<div class="page-tools">
-			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
+			<a class="go-back" href="<c:url value='/home' />"><spring:message code="GoBack" /></a>
 		</div>
-		<h1>Make an Appointment</h1>
+		<h3><spring:message code="MakeAppointment" /></h3>
+		<hr>
 		<form:form modelAttribute="appointment" action="create" method="post">
 			<div id="appointment-info">
 				<p>
@@ -27,11 +28,11 @@
 					<form:errors path="description" cssClass="error" />
 				</p>
 				<p id="button-panel">
-					<input id="reset" type="reset"
+					<input id="reset" type="reset"  class="btn btn-primary"
 						value="<spring:message code="savePatient.form.reset.label"/>"
-						tabindex="4"> <input id="submit" type="submit"
+						tabindex="4"> <input id="submit" type="submit"  class="btn btn-primary"
 						tabindex="5"
-						value="Request Appointment">
+						value="<spring:message code="createAppointment.form.submit.label"/>">
 				</p>
 			</div>
 		</form:form>

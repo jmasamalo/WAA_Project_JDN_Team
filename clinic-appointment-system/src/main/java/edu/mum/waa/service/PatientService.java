@@ -4,5 +4,6 @@ import edu.mum.waa.domain.Patient;
 
 public interface PatientService {
 	Patient findByEmail(String email);
-	void save(Patient patient);
+	Patient save(Patient patient);
+	void delete(Patient patient);
 }

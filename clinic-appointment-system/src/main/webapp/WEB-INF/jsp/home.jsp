@@ -26,7 +26,7 @@
 			</ul>
 		</c:if>
 		<c:if test="${not empty currentUser}">
-			<p>Select a task that you would like to perform:</p>
+			<!-- <p>Select a task that you would like to perform:</p> -->
 			<c:choose>
 				<c:when test="${currentUser.role == 'ROLE_ADMIN'}">
 					<tags:admin></tags:admin>

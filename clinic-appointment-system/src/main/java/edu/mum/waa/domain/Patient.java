@@ -17,9 +17,11 @@ import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.mum.waa.validator.EmailExist;
 import edu.mum.waa.validator.PasswordMatchContraintValidator;
@@ -72,9 +74,21 @@ public class Patient {
 	@JoinColumn(name = "user_id")
 	@Valid
 	User user;
+	
+	@Transient
+	@NotNull
+	private MultipartFile photo;
 
 	public long getId() {
 		return id;
+	}
+
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
 	}
 
 	public void setId(long id) {

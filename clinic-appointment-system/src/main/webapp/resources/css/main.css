@@ -11,7 +11,9 @@ body {
 
 #header {
 	height: 50px;
-	background-color: #808080;
+
+	background-color: #fcc9f5;
+
 	border-bottom: 1px solid lightgray;
 	overflow: hidden;
 	box-sizing: border-box;
@@ -53,7 +55,9 @@ body {
 #footer {
 	border-top: 1px solid lightgray;
 	/* background-color: whitesmoke; */
-	background-color: #808080;
+
+	background-color: #fcc9f5;
+
 	padding-top: 5px;
 	padding-bottom: 10px;
 	min-height: 150px;

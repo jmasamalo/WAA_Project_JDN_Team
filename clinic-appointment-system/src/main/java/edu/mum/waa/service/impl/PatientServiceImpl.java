@@ -23,7 +23,7 @@ public class PatientServiceImpl implements PatientService {
 	}
 	
 	@Override
-	public void save(Patient patient) {
+	public Patient save(Patient patient) {
 		User user = patient.getUser();
 		BCryptPasswordEncoder passworEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = passworEncoder.encode(user.getPassword());
@@ -32,6 +32,11 @@ public class PatientServiceImpl implements PatientService {
 		user.setUsername(patient.getEmail());
 		user.setEnabled(true);
 		user.setRole(UserRoles.ROLE_PATIENT);
-		patientRepository.save(patient);
+		return patientRepository.save(patient);
+	}
+	
+	@Override
+	public void delete(Patient patient) {
+		patientRepository.delete(patient);
 	}
 }

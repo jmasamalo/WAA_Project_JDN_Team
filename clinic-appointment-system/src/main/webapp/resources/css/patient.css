@@ -2,12 +2,25 @@
 	float: left;
 }
 
-#account-info {
-	margin-right: 100px;
+#account-info, #address-info {
+	margin-right: 50px;
+}
+
+#photo{
+	display: inline;
+}
+#PassportSizePhoto{
+	margin-right: 50px;
+	float: left;
+	border: 0px solid blue;
 }
 
 #account-info .field-label {
 	width: 160px;
+}
+
+#PassportSizePhoto .field-label {
+	width: 100px;
 }
 
 #address-info .field-label {
@@ -29,4 +42,12 @@ input[type="text"], input[type="password"] {
 .error {
 	display: inline-block;
 	vertical-align: middle;
+}
+
+.imgRounded{
+	border-radius: 150px;
+}
+
+hr{
+	border: 1px solid #fcc9f5;
 }
