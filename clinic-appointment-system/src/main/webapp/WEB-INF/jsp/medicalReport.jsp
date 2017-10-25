@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib  uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -10,24 +11,24 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Clinic Appointment System</title>
 <tags:basecss></tags:basecss>
-<link href="<c:url value='/resources/css/modal.css'/>" rel="stylesheet" />
-<link href="<c:url value='/resources/css/doctor.css'/>" rel="stylesheet" />
+<link href="<c:url value='/resources/css/patient.css'/>" rel="stylesheet" />
 </head>
 <body>
 	<tags:header></tags:header>
 	<div id="main">
 		<div class="page-tools">
-			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
+			<a class="go-back" href="<c:url value='/home' />"><spring:message code="GoBack" /></a>
 		</div>
-		<h1>Your Medical History</h1>
-		<table>
+		<h3><spring:message code="MedicalHistory" /></h3>
+		<hr>
+		<table class="table">
 			<thead>
 				<tr>
-					<th>Date</th>
-					<th>Symptomps</th>
-					<th>diagnosis</th>
-					<th>medication</th>
-					<th>dosages</th>
+					<th><spring:message code="AppointmentDate" /></th>
+					<th><spring:message code="AppointmentSymptomps" /></th>
+					<th><spring:message code="AppointmentDiagnosis" /></th>
+					<th><spring:message code="AppointmentMedication" /></th>
+					<th><spring:message code="AppointmentDosages" /></th>
 				</tr>
 			</thead>
 			<tbody id="prescription-list">

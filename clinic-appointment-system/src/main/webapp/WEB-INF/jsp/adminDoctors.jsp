@@ -20,9 +20,9 @@
 		</div>
 		<h1>List of Doctors</h1>
 		<p>
-			<button id="add-doctor">Add Doctor</button>
+		<a href="<c:url value='doctor/addDoctor'/>" class="btn btn-info">Add Doctor</a>
 		</p>
-		<table>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>First Name</th>
@@ -40,48 +40,13 @@
 						<td>${doctor.speciality}</td>
 						<td>${doctor.email}</td>
 						<td>
-							<a class="edit" data-id="${doctor.id}" data-user-id="${doctor.user.id}">Edit</a> |
-							<a class="delete" data-id="${doctor.id}">Delete</a>
+							<a class="edit" href="doctor/addDoctor/${doctor.id}" >Edit</a>
+							<a class="delete" href="doctor/deleteDoctor/${doctor.id}">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<div id="doctor-modal" class="modal">
-			<div class="modal-content">
-				<span class="close">&times;</span>
-				<input type="hidden" id="app-path" value="<c:url value='/'/>" />
-				<input type="hidden" id="doctorId" />
-				<input type="hidden" id="userId" />
-				<h1 class="modal-title">Add New Doctor</h1>
-				<p>
-					<label for="firstName" class="field-label">First Name</label>
-					<input type="text" id="firstName" name="firstName" />
-				</p>
-				<p>
-					<label for="lastName" class="field-label">Last Name</label>
-					<input type="text" id="lastName" name="lastName" />
-				</p>
-				<p>
-					<label for="speciality" class="field-label">Speciality</label>
-					<select id="speciality">
-						<option value="CARDIOLOGIST">CARDIOLOGIST</option>
-						<option value="DERMATOLOGISTS">DERMATOLOGISTS</option>
-						<option value="GASTROENTEROLOGIST">GASTROENTEROLOGIST</option>
-						<option value="NEUROLOGIST">NEUROLOGIST</option>
-					</select>
-				</p>
-				<p>
-					<label for="email" class="field-label">Email</label>
-					<input type="text" id="email" name="email" />
-				</p>
-				<p>
-					<label for="password" class="field-label">Password</label>
-					<input type="password" id="password" name="password" />
-				</p>
-				<button id="save-doctor">Save</button>
-			</div>
-		</div>
 	</div>
 	<tags:footer></tags:footer>
 	<tags:basejs></tags:basejs>

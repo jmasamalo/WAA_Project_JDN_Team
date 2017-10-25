@@ -10,8 +10,11 @@ body {
 }
 
 #header {
-	height: 80px;
-	background-color: #5bc0de;
+
+	height: 50px;
+
+	background-color: #fcc9f5;
+
 	border-bottom: 1px solid lightgray;
 	overflow: hidden;
 	box-sizing: border-box;
@@ -53,12 +56,18 @@ body {
 
 #footer {
 	border-top: 1px solid lightgray;
-	background-color: #5bc0de;
+
+	/* background-color: whitesmoke; */
+
+	background-color: #fcc9f5;
+
 	padding-top: 5px;
 	padding-bottom: 5px;
 	min-height: 150px;
 	box-sizing: border-box;
-	
+	position:relative;
+	bottom:0px;
+	width:100%;
 }
 
 #footer ul {
@@ -104,7 +113,7 @@ table {
 }
 
 th, td {
-	border: 1px solid gray;
+	border: 0px solid gray;
 	padding: 5px;
 }
 

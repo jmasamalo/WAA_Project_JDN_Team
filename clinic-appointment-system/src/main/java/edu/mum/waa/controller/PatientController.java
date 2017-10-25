@@ -1,7 +1,10 @@
 package edu.mum.waa.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.waa.domain.Patient;
 import edu.mum.waa.domain.Prescription;
@@ -45,12 +50,54 @@ public class PatientController {
 	}
 
 	@RequestMapping(value = "/registerPatient", method = RequestMethod.POST)
-	public String savePatient(@Valid @ModelAttribute("newPatient") Patient patient, BindingResult result) {
+	public String savePatient(@Valid @ModelAttribute("newPatient") Patient patient, 
+			BindingResult result, 
+			HttpServletRequest request,
+			Model model,
+			RedirectAttributes redirectAttributes) throws FileNotFoundException {
 		if (result.hasErrors()) {
 			return "registerPatient";
 		}
-		patientService.save(patient);
-		return "redirect:/registerPatientSuccess";
+		
+		MultipartFile image = patient.getPhoto();
+ 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+ 		
+ 		//isEmpty means file exists BUT NO Content
+		if(image!=null && !image.isEmpty()) {
+	 		String imageFileName = image.getOriginalFilename().toLowerCase();
+	 		String acceptedFileExtentions  = ".jpg .png .gif";
+	 		int lastIndex = imageFileName.lastIndexOf('.');
+	 		String imageFileExtension = imageFileName.substring(lastIndex, imageFileName.length());
+	 		
+	 		if(acceptedFileExtentions.contains(imageFileExtension)) {
+				//imageValid = true;
+				
+				//save before image saving to obtain the auto-generated id
+				Patient savedPatient = patientService.save(patient);
+				String destinationImage = rootDirectory+"\\resources\\images\\"+ savedPatient.getLastName()+"_"+ savedPatient.getId() + ".jpg";
+	 	 	   
+				try {
+					image.transferTo(new File(destinationImage));
+				} catch (Exception e) {
+					//rollback the save
+					patientService.delete(savedPatient); 
+					throw new FileNotFoundException("Unable to save file: " + image.getOriginalFilename());
+				}
+								
+				redirectAttributes.addFlashAttribute("patient", savedPatient);
+
+				return "redirect:/registerPatientSuccess";
+
+	 		}else {
+	 			model.addAttribute("imgError", true);
+	 		}
+	 		
+
+		}else {
+ 			model.addAttribute("imgError", true);
+ 		}
+	
+		return "registerPatient";
 	}
 
 	@RequestMapping(value = "/registerPatientSuccess", method = RequestMethod.GET)
@@ -63,5 +110,13 @@ public class PatientController {
 		User user = ControllerHelper.getCurrentUser();
 		model.addAttribute("appointments", appointmentService.findByPatientEmail(user.getUsername()));
 		return "appointmentStatus";
+	}
+	
+	@RequestMapping(value = "/patient/details", method = RequestMethod.GET)
+	public String patientDetails(Model model) {
+		User user = ControllerHelper.getCurrentUser();
+		Patient patient = patientService.findByEmail(user.getUsername());
+		model.addAttribute("patient", patient);
+		return "patientDetails";
 	}
 }

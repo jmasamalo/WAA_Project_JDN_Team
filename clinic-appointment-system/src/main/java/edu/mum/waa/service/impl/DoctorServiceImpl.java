@@ -26,14 +26,20 @@ public class DoctorServiceImpl implements DoctorService {
 	public List<Doctor> findAllActive(){
 		return doctorRepository.findAllActive();
 	}
+	
+	
+	public List<Doctor> findAll(){
+		return  (List<Doctor>) doctorRepository.findAll();
+	}
 
 	public Doctor add(Doctor doctor) {
 		BCryptPasswordEncoder passworEncoder = new BCryptPasswordEncoder();
 		User user = doctor.getUser();
 		user.setUsername(doctor.getEmail());
 		user.setRole(UserRoles.ROLE_DOCTOR);
+		doctor.setEnabled(true);
 		user.setEnabled(true);
-		user.setPassword(passworEncoder.encode(user.getPassword()));
+		user.setPassword(passworEncoder.encode(user.getPassword()));		
 		return doctorRepository.save(doctor);
 	}
 	
@@ -46,6 +52,7 @@ public class DoctorServiceImpl implements DoctorService {
 			BCryptPasswordEncoder passworEncoder = new BCryptPasswordEncoder();
 			existingUser.setPassword(passworEncoder.encode(password));
 		}
+		doctor.setEnabled(true);
 		doctor.setUser(existingUser);
 		userRepository.save(existingUser);
 		return doctorRepository.save(doctor);
@@ -61,4 +68,32 @@ public class DoctorServiceImpl implements DoctorService {
 			userRepository.save(user);
 		}
 	}
+
+
+	@Override
+	public Doctor findOne(long id) {
+		
+		return doctorRepository.findOne(id);
+	}
+
+
+	@Override
+	public User getUserFromDoctor(long id) {
+		return doctorRepository.getUserFromDoctor(id);
+	}
+
+
+	@Override
+	public Doctor findByEmail(String email) {
+		// TODO Auto-generated method stub
+		Doctor d = doctorRepository.findByEmail(email);
+		return d;
+	}
+	@Override
+	public void delete(Doctor doctor) {
+		doctorRepository.delete(doctor);
+	}
+	
+	
+
 }

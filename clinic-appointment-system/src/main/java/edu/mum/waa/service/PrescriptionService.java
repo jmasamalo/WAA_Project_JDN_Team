@@ -9,4 +9,5 @@ public interface PrescriptionService {
 	List<Prescription> findByAppointmentId(long appointmentId);
 	Prescription save(Prescription prescription);
 	void delete(long id);
+	Prescription findOne(long id);
 }

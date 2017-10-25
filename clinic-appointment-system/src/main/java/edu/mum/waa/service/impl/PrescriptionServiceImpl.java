@@ -31,4 +31,9 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 	public void delete(long id) {
 		prescriptionRepository.delete(id);
 	}
+
+	@Override
+	public Prescription findOne(long id) {
+		return prescriptionRepository.findOne(id);
+	}
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib  uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
@@ -14,12 +14,23 @@
 <body>
 	<tags:header></tags:header>
 	<div id="main">
-		<h4><spring:message code="savePatient.form.success" /></h4>
+		<div class="page-tools">
+			<a class="go-back" href="<c:url value='/home' />"><spring:message code="GoBack" /></a>
+		</div>
+		<h3><spring:message code="Patient.Details" /></h3>
+		<hr>
 		
-		<c:if test="${not empty patient}">
+		
+			<div id="PassportSizePhoto">
+				<%-- <h3><spring:message code="savePatient.form.PassportPhoto" /></h3> --%>
+				<p>
+					<img  class="imgRounded" width="150px" height="150px" src="<c:url value="/resources/images/${patient.lastName}_${patient.id}.jpg"></c:url>" alt=""/> 
+				
+				</p>
+			</div>
 			
 			<div id="account-info">
-				<h3><spring:message code="savePatient.form.AccountInfo" /></h3>
+				<%-- <h3><spring:message code="savePatient.form.AccountInfo" /></h3> --%>
 				<p>
 					<label class="field-label"><spring:message code="savePatient.form.fname.label" /></label>
 					<span>${patient.firstName}</span>
@@ -32,7 +43,7 @@
 				<p>
 					<label class="field-label"><spring:message
 							code="savePatient.form.bdate.label" /></label>
-					<span>${patient.birthDate}</span>
+					<span><fmt:formatDate pattern="MM-dd-yyyy" value="${patient.birthDate}" /></span>
 				</p>
 				<p>
 					<label class="field-label"><spring:message
@@ -41,7 +52,7 @@
 				</p>
 			</div>
 			<div id="address-info">
-				<h3><spring:message code="savePatient.form.AddressInfo" /></h3>
+				<%-- <h3><spring:message code="savePatient.form.AddressInfo" /></h3> --%>
 				<p>
 					<label class="field-label"><spring:message code="address.street" /></label>
 					<span>${patient.address.street}</span>
@@ -61,22 +72,12 @@
 				</p>
 			</div>
 			
-			<div id="PassportSizePhoto">
-				<h3><spring:message code="savePatient.form.PassportPhoto" /></h3>
-				<p>
-					<img width="150px" height="150px" src="<c:url value="/resources/images/${patient.lastName}_${patient.id}.jpg"></c:url>" alt="" /> 
-				
-				</p>
-			</div>
+			<p id="button-panel">
 			
-		</c:if>
-					<p id="button-panel">
-			
-			<hr>
-			Please <a href="<spring:url value="/login"></spring:url>">login</a> to make an appointment.
+			<!-- <hr> -->
 			</p>
-	</div>
 		
+	</div>
 	<tags:footer></tags:footer>
 	<tags:basejs></tags:basejs>
 </body>

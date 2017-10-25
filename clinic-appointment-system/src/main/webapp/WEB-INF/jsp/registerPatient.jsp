@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib  uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
@@ -13,15 +14,20 @@
 <link href="<c:url value='/resources/css/patient.css'/>" rel="stylesheet" />
 </head>
 <body>
-	<tags:header></tags:header>
+	<tags:header></tags:header> 
 	<div id="main">
-		<h3>Patient Sign Up Form</h3> <hr />
-		<form:form modelAttribute="newPatient" action="registerPatient" method="post">
+		<!-- ?${_csrf.parameterName}=${_csrf.token} -->
+		<p class="text-right"><a href="?language=en" >English</a> | <a href="?language=sw" >Swahili</a></p>
+		
+		<h3><spring:message code="savePatient.form.title" /></h3> <hr />
+		<form:form modelAttribute="newPatient" action="registerPatient?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 			<div>
 				<form:errors path="*" cssClass="error" />
 			</div>
-			<div id="account-info">
-				<h3>Account Information</h3>
+			
+			
+			<div id="account-info"> 
+				<h3><spring:message code="savePatient.form.AccountInfo" /></h3>
 				<p>
 					<label for="firstName" class="field-label"><spring:message code="savePatient.form.fname.label" /></label>
 					<form:input path="firstName" />
@@ -44,7 +50,7 @@
 							code="savePatient.form.email.label"></spring:message></label>
 					<form:input path="email" id="email" />
 					<form:errors path="email" cssClass="error" />
-					<p>
+				</p>
 				<p>
 					<label for="password" class="field-label"><spring:message
 							code="savePatient.form.password.label" /></label>
@@ -59,7 +65,7 @@
 				</p>
 			</div>
 			<div id="address-info">
-				<h3>Address Information</h3>
+				<h3><spring:message code="savePatient.form.AddressInfo" /></h3>
 				<p>
 					<label for="street" class="field-label"><spring:message code="address.street" /></label>
 					<form:input path="address.street" id="street" />
@@ -82,16 +88,34 @@
 					<form:errors path="address.zipCode" cssClass="error" />
 				</p>
 			</div>
+			
+			<div id="PassportSizePhoto"> 
+				<h3><spring:message code="savePatient.form.PassportPhoto" /></h3>
+				<p>
+					<label for="photo" class="field-label"><spring:message code="PassportSizePhoto" /></label>
+					<form:input path="photo" id="photo" type="file" class="form:input-large" />
+					<form:errors path="photo" cssClass="error" />
+				</p>
+				<c:if test="${not empty imgError}">
+					<p class="error">
+						<spring:message code="PassportSizePhotoError" />
+					</p>
+				</c:if>
+			</div>
+			
 			<p id="button-panel">
 			
 			<hr />
+				
+				<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
 				<input id="reset" type="reset" class="btn btn-primary"
 					value="<spring:message code="savePatient.form.reset.label"/>"
-					tabindex="4"> 
+					tabindex="4" /> 
 					<input id="submit" type="submit" class="btn btn-primary"
 					tabindex="5"
-					value="<spring:message code="savePatient.form.submit.label"/>">
+					value="<spring:message code="savePatient.form.submit.label"/>" />
 			</p>
+			
 		</form:form>
 	</div>
 	<tags:footer></tags:footer>

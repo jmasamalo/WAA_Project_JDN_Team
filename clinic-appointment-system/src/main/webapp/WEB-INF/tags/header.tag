@@ -5,6 +5,11 @@
 <div id="header">
 	<a id="root-link" href="<c:url value="/" />">CLINIC APPOINTMENT SYSTEM</a>
 	<div class="tools">
+
+	<c:if test="${currentUser.role == 'ROLE_PATIENT'}">
+			<a href="?language=en" >English</a> | <a href="?language=sw" >Swahili</a> | 
+	</c:if>
+			
 		<security:authorize access="isAnonymous()">
 			<a href="<spring:url value="/registerPatient"></spring:url>">Sign Up</a> |
 			<a href="<spring:url value='/login' />">Login</a>

@@ -10,6 +10,7 @@ import edu.mum.waa.exceptions.AppointmentExceptions;
 
 @ControllerAdvice
 public class ControllerException {
+
 	@ExceptionHandler(AppointmentExceptions.class)
 	public String handleappointmentExceptions(Exception e, Model model) {
 		model.addAttribute("err", false);
