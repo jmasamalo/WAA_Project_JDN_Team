@@ -1,22 +1,30 @@
 package edu.mum.waa.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
+import javax.print.Doc;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.mum.waa.domain.Appointment;
 import edu.mum.waa.domain.Doctor;
 import edu.mum.waa.domain.User;
+import edu.mum.waa.exceptions.ImageException;
 import edu.mum.waa.service.AppointmentService;
 import edu.mum.waa.service.DoctorService;
 
@@ -24,23 +32,23 @@ import edu.mum.waa.service.DoctorService;
 public class DoctorController {
 	@Autowired
 	DoctorService doctorService;
-	
+
 	@Autowired
 	AppointmentService appointmentService;
 	
-	@RequestMapping(value="/admin/doctor/addDoctor", method=RequestMethod.GET)
-	public String addDoctorPage(@ModelAttribute("addDoctor") Doctor doctor) {
-		return "addDoctor";
+	@Autowired
+	ServletContext servletContext;
+	
+	@Autowired
+	MessageSource messageSource;
+	
+	@RequestMapping(value = "/admin/doctor", method = RequestMethod.GET)
+	public String list(Model model) {
+		List<Doctor> doctors = doctorService.findAllActive();
+		model.addAttribute("doctors", doctors);
+		return "adminDoctors";
 	}
-	
-	
-	
-	@RequestMapping(value="/admin/doctor/addDoctor", method=RequestMethod.POST)
-	public String addDoctorToDB(@ModelAttribute("addDoctor") Doctor doctor) {
-		doctorService.add(doctor);
-		return "redirect:/admin/doctor";
-	}
-	
+
 	@RequestMapping(value = "/doctor/appointment", method = RequestMethod.GET)
 	public String welcome(Model model) {
 		User user = ControllerHelper.getCurrentUser();
@@ -49,39 +57,120 @@ public class DoctorController {
 		return "doctorAppointments";
 	}
 
-	@RequestMapping(value = "/admin/doctor", method = RequestMethod.GET)
-	public String list(Model model) {
-		List<Doctor> doctors = doctorService.findAllActive();
-		model.addAttribute("doctors", doctors);
-		return "adminDoctors";
+	@RequestMapping(value = "/admin/doctor/addDoctor", method = RequestMethod.GET)
+	public String addDoctorPage(@ModelAttribute("addDoctor") Doctor doctor) {
+		return "addDoctor";
 	}
+
+	@RequestMapping(value = "/admin/doctor/addDoctor", method = RequestMethod.POST)
+	public String addDoctorToDB(@Valid @ModelAttribute("addDoctor") Doctor doctor, BindingResult result,
+			Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) throws FileNotFoundException {
+		if (result.hasErrors()) {
+			return "addDoctor";
+		}
+		MultipartFile image = doctor.getImage();
+ 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+ 		
+ 		//isEmpty means file exists BUT NO Content
+		if(image!=null && !image.isEmpty()) {
+	 		String imageFileName = image.getOriginalFilename().toLowerCase();
+	 		String acceptedFileExtentions  = ".jpg .png .gif";
+	 		int lastIndex = imageFileName.lastIndexOf('.');
+	 		String imageFileExtension = imageFileName.substring(lastIndex, imageFileName.length());
+	 		
+	 		if(acceptedFileExtentions.contains(imageFileExtension)) {
+				//imageValid = true;
+				
+				//save before image saving to obtain the auto-generated id
+				Doctor savedDoctor = doctorService.add(doctor);
+				String destinationImage = rootDirectory+"\\resources\\images\\"+ savedDoctor.getLastName()+"_"+ savedDoctor.getId() + ".jpg";
+	 	 	   
+				try {
+					image.transferTo(new File(destinationImage));
+				} catch (Exception e) {
+					//rollback the save
+					doctorService.delete(savedDoctor); 
+					throw new FileNotFoundException("Unable to save file: " + image.getOriginalFilename());
+				}
+								
+				redirectAttributes.addFlashAttribute("doctor", savedDoctor);
+
+				return "redirect:/admin/doctor";
+
+	 		}else {
+	 			model.addAttribute("imgError", true);
+	 		}
+	 		
+
+		}else {
+ 			model.addAttribute("imgError", true);
+ 		}
 	
-	@RequestMapping(value="/admin/doctor/deleteDoctor/{id}", method=RequestMethod.GET)
+		return "addDoctor";
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*MultipartFile image = doctor.getImage();
+		String rootDirectory = servletContext.getRealPath("/");
+		String uploadLocation = messageSource.getMessage("upload.location", null, null);
+		String imagePath = uploadLocation+doctor.getId()+".png";
+		if(image != null && !image.isEmpty()) {
+			try {
+				image.transferTo(new File(imagePath));
+			} catch (Exception e) {
+				throw new ImageException("Saving Image Failed",e);
+			}
+		}
+		doctor.setImagePath(servletContext.getContextPath()+"/resources/images"+doctor.getId()+".png");*/
+//		
+//		doctor = doctorService.add(doctor);
+//		return "redirect:/admin/doctor";
+	}
+
+	@RequestMapping(value = "/admin/doctor/deleteDoctor/{id}", method = RequestMethod.GET)
 	public String deleteDoctor(@PathVariable("id") long id) {
 		doctorService.delete(id);
 		return "redirect:/admin/doctor";
 	}
-	
-	
-	@RequestMapping(value="/admin/doctor/addDoctor/{id}", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/admin/doctor/addDoctor/{id}", method = RequestMethod.GET)
 	public String editDoctorPage(@PathVariable("id") long id, @ModelAttribute("addDoctor") Doctor doctor, Model model) {
-//		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		doctor = doctorService.findOne(id);
-//		System.out.println(doctor.getUser().getId());
-//		System.out.println("aaaaaaaaaaaaaaa"+doctor.getFirstName());
 		model.addAttribute("addDoctor", doctor);
-//		model.addAttribute("user",doctor.getUser());
 		return "addDoctor";
 	}
-	
-	@RequestMapping(value="/admin/doctor/addDoctor/{id}", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/admin/doctor/addDoctor/{id}", method = RequestMethod.POST)
 	public String editDoctor(@ModelAttribute("addDoctor") Doctor doctor, Model model) {
-//		System.out.println("aaaaaaaaaaaaaaBBBBBBBBBBBBBBBBB");
-//		System.out.println(doctor.getUser().getId());
-		User user = doctorService.getUserFromDoctor(doctor.getId());
-		doctor.getUser().setId(user.getId());
-		doctorService.edit(doctor);
-		return "redirect:/admin/doctor";
+			User user = doctorService.getUserFromDoctor(doctor.getId());
+			doctor.getUser().setId(user.getId());
+			doctorService.edit(doctor);
+			return "redirect:/admin/doctor";
+	}
+
+	@RequestMapping(value = "/doctor/doctorDetails", method = RequestMethod.GET)
+	public String showDetails( Model model) {
+		
+		User user = ControllerHelper.getCurrentUser();
+		Doctor doctor = doctorService.findByEmail(user.getUsername());
+		model.addAttribute("doctor", doctor);
+		return "doctorDetails";
+			
 	}
 	
 }

@@ -17,4 +17,7 @@ public interface DoctorRepository extends CrudRepository<Doctor, Long> {
 	
 	@Query("SELECT d.user FROM doctor d WHERE d.id=:id")
 	User getUserFromDoctor(@Param("id") long id);
+	
+	Doctor findByEmail(String email);
+	
 }
