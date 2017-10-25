@@ -7,8 +7,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="_csrf" content="${_csrf.token}" />
-<meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Clinic Appointment System</title>
 <tags:basecss></tags:basecss>
 <link href="<c:url value='/resources/css/receptionist.css'/>"
@@ -23,7 +21,11 @@
 		<%-- Current Locale : ${pageContext.response.locale} --%>
 		<div class="col-md-5">
 			<div class="form-area">
-				<form:form method="post" action="" modelAttribute="addReceptionist">
+				<form:form method="post" action="?${_csrf.parameterName}=${_csrf.token}" modelAttribute="addReceptionist" 
+				enctype = "multipart/form-data">
+				<div>
+					<form:errors path="*" cssClass="errorClass"></form:errors>
+				</div>
 					<br style="clear: both">
 					<h3 style="margin-bottom: 25px; text-align: center;">
 						<spring:message code="label.addNewReceptionist" />
@@ -60,6 +62,23 @@
 							path="user.password"></form:input>
 						<form:errors cssClass="errorClass" path="user.password"></form:errors>
 					</div>
+					
+					<div class="form-group">
+					<label for="image" class="cols-sm-2 control-label">Image</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user fa"
+								aria-hidden="true"></i></span>
+							<form:input type="file" class="form-control" path="image" name="image"
+								id="image" />
+						</div>
+					</div>
+					<c:if test="${not empty imgError}">
+					<p class="error">
+						<spring:message code="receptionistPhotoError" />
+					</p>
+				</c:if>
+				</div>
 
 					<button name="submit" class="btn btn-primary pull-right">
 						<spring:message code="label.save" />

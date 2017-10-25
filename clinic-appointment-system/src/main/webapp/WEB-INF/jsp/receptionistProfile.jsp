@@ -14,6 +14,7 @@
 </head>
 <body>
 	<tags:header></tags:header>
+	<a href="/resources/images/23.png"/>
 	<div class="container">
 		<div class="page-tools">
 			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
@@ -27,9 +28,12 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-3 col-lg-3 " align="center">
-								<img alt="User Pic"
-									src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
-									class="img-circle img-responsive">
+								<div id="PassportSizePhoto">
+							<p>
+								<img alt="image" id="receptionistImage" src="<c:url value="/resources/images/${receptionist.lastName}_${receptionist.id}.jpg"></c:url>" alt=""/> 
+							
+							</p>
+						</div>
 							</div>
 
 						</div>
@@ -38,15 +42,15 @@
 								<tbody>
 									<tr>
 										<td>FirstName:</td>
-										<td>${userdetail.firstName}</td>
+										<td>${receptionist.firstName}</td>
 									</tr>
 									<tr>
 										<td>LastName:</td>
-										<td>${userdetail.lastName}</td>
+										<td>${receptionist.lastName}</td>
 									</tr>
 									<tr>
 										<td>Email:</td>
-										<td><a href="mailto:info@support.com">${userdetail.email}</a></td>
+										<td><a href="mailto:info@support.com">${receptionist.email}</a></td>
 									</tr>
 
 								</tbody>

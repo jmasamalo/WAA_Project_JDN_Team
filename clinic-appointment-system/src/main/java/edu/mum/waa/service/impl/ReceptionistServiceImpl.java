@@ -97,6 +97,7 @@ public class ReceptionistServiceImpl implements ReceptionistService {
 		return  receptionistRepository.findAllByIdNotAndEmail(id, email);
 	}
 	
+	@Override
 	public boolean emailExists(Receptionist receptionist) {
 		System.out.println("receptionist.getId()" + receptionist.getId());
 		if(receptionist.getId()!=0)
@@ -107,5 +108,11 @@ public class ReceptionistServiceImpl implements ReceptionistService {
 		else if(findAllByIdNotAndEmail(receptionist.getId(),receptionist.getEmail()).size()>0)
 			return true;
 		return false;
+	}
+
+	@Override
+	public void delete(Receptionist receptionist) {
+		receptionistRepository.delete(receptionist);
+		
 	}
 }

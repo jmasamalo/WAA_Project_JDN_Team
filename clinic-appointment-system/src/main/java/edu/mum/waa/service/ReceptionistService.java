@@ -16,5 +16,6 @@ public interface ReceptionistService {
 	Receptionist findByEmail(String email);
 	List<Receptionist> findAllByIdNotAndEmail(long id, String email);
 	boolean emailExists(Receptionist receptionist);
+	void delete(Receptionist receptionist);
 	
 }
