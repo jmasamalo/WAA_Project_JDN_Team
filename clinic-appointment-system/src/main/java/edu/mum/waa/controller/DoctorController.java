@@ -24,7 +24,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.mum.waa.domain.Appointment;
 import edu.mum.waa.domain.Doctor;
 import edu.mum.waa.domain.User;
-import edu.mum.waa.exceptions.ImageException;
 import edu.mum.waa.service.AppointmentService;
 import edu.mum.waa.service.DoctorService;
 
