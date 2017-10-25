@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity(name ="receptionist")
 public class Receptionist {
@@ -17,21 +20,38 @@ public class Receptionist {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@NotEmpty
 	@Column(name = "first_name")
 	private String firstName;
 
+	@NotEmpty
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "email")
+	/*public Phone getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Phone phone) {
+		this.phone = phone;
+	}*/
+
+	@Email
+	@Column(name = "email", unique= true)
 	private String email;
 	
 	@Column(name = "enabled")
 	private boolean enabled;
 
+	@Valid
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	/*@Valid
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "phone_id")
+	private Phone phone;*/
 
 	public long getId() {
 		return id;

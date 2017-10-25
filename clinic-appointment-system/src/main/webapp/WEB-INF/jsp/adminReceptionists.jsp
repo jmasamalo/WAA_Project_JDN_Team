@@ -1,16 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="_csrf" content="${_csrf.token}"/>
-<meta name="_csrf_header" content="${_csrf.headerName}"/>
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Clinic Appointment System</title>
 <tags:basecss></tags:basecss>
 <link href="<c:url value='/resources/css/modal.css'/>" rel="stylesheet" />
-<link href="<c:url value='/resources/css/receptionist.css'/>" rel="stylesheet" />
+<link href="<c:url value='/resources/css/receptionist.css'/>"
+	rel="stylesheet" />
 </head>
 <body>
 	<tags:header></tags:header>
@@ -28,8 +30,8 @@
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email</th>
-					<th></th>
-					
+					<th>Action</th>
+
 				</tr>
 			</thead>
 			<tbody id="receptionist-list">
@@ -38,9 +40,10 @@
 						<td>${receptionist.firstName}</td>
 						<td>${receptionist.lastName}</td>
 						<td>${receptionist.email}</td>
-						<td>
-							<a class="edit" href="receptionist/addReceptionist/${receptionist.id}">Edit</a> |
-							<a class="delete" href="receptionist/deleteReceptionist/${receptionist.id}">Delete</a>
+						<td><a class="edit"
+							href="receptionist/addReceptionist/${receptionist.id}">Edit</a> |
+							<a class="delete"
+							href="receptionist/deleteReceptionist/${receptionist.id}">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -49,6 +52,5 @@
 	</div>
 	<tags:footer></tags:footer>
 	<tags:basejs></tags:basejs>
-	<script type="text/javascript" src="<c:url value='/resources/js/receptionist.js'/>"></script>
 </body>
 </html>

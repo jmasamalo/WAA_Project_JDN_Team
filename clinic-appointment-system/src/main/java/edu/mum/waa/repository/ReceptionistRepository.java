@@ -15,4 +15,9 @@ public interface ReceptionistRepository extends CrudRepository<Receptionist, Lon
 	
 	@Query("SELECT r.user FROM receptionist r WHERE r.id = :id")
 	User getUserFromReceptionist(@Param("id") long id);
+	
+//	@Query("SELECT r FROM receptionist r WHERE r.email = :email")
+	Receptionist findFirstByEmail(@Param("email") String email);
+
+	List<Receptionist> findAllByIdNotAndEmail(long id, String email);
 }
