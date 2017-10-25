@@ -1,11 +1,8 @@
-#container legend{
-	text-align:center;
-	font-size: medium;
+#prescription-modal>.modal-content {
+	max-width: 480px;
 }
-#prescriptionForm{
-	width:600px;
-    border:2px solid #b6c3d4;
-    border-radius: 10px;
-    margin:auto;
-    padding:20px;
+
+#prescription-modal input[type="text"], #prescription-modal textarea {
+	width: 100%;
+	box-sizing: border-box;
 }

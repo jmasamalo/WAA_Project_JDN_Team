@@ -28,9 +28,9 @@ public class ReceptionistServiceImpl implements ReceptionistService {
 		User user = receptionist.getUser();
 		user.setUsername(receptionist.getEmail());
 		user.setRole(UserRoles.ROLE_RECEPTIONIST);
-		receptionist.setEnabled(true);
 		user.setEnabled(true);
 		user.setPassword(passworEncoder.encode(user.getPassword()));
+		receptionist.setEnabled(true);
 		return receptionistRepository.save(receptionist);
 	}
 	
@@ -82,37 +82,5 @@ public class ReceptionistServiceImpl implements ReceptionistService {
 	public User getUserFromReceptionist(long id) {
 		// TODO Auto-generated method stub
 		return receptionistRepository.getUserFromReceptionist(id);
-	}
-
-	@Override
-	public Receptionist findByEmail(String email) {
-		// TODO Auto-generated method stub
-		
-		return receptionistRepository.findFirstByEmail(email);
-	}
-
-	@Override
-	public List<Receptionist> findAllByIdNotAndEmail(long id, String email) {
-		
-		return  receptionistRepository.findAllByIdNotAndEmail(id, email);
-	}
-	
-	@Override
-	public boolean emailExists(Receptionist receptionist) {
-		System.out.println("receptionist.getId()" + receptionist.getId());
-		if(receptionist.getId()!=0)
-		{
-			if(receptionistRepository.findFirstByEmail(receptionist.getEmail())!=null)
-				return true;
-		}
-		else if(findAllByIdNotAndEmail(receptionist.getId(),receptionist.getEmail()).size()>0)
-			return true;
-		return false;
-	}
-
-	@Override
-	public void delete(Receptionist receptionist) {
-		receptionistRepository.delete(receptionist);
-		
 	}
 }

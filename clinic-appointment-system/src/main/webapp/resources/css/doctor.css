@@ -1,20 +1,8 @@
-#doctorForm{
-	width:600px;
-    border:2px solid #b6c3d4;
-    border-radius: 10px;
-    margin:auto;
-    padding:20px;
+#doctor-modal>.modal-content {
+	max-width: 480px;
 }
-#doctorImage{
-	border-radius: 50%;
-	
-}
-#container h3{
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-}
-#detailForm{
-	border: border:2px solid #b6c3d4;
-	width:400px;
+
+#doctor-modal input[type="text"], #doctor-modal input[type="password"], #doctor-modal select {
+	width: 100%;
+	box-sizing: border-box;
 }

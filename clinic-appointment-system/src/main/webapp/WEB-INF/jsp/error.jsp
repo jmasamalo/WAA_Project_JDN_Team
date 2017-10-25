@@ -16,7 +16,6 @@
 <body>
 	<tags:header></tags:header>
 	<div id="main">
-
 		<c:if test="${not empty img}">
 			<p class="error">
 				Please note: We support jpg, png, or gif image types.
@@ -27,10 +26,6 @@
 			Oops! It seems everybody wants to see a doctor today!
 			</p>
 		</c:if>			
-	
-        <c:forEach items="${exception.stackTrace}" var="ste">    ${ste} 
-    </c:forEach>	
-
 	</div>
 	<tags:footer></tags:footer>
 	<tags:basejs></tags:basejs>

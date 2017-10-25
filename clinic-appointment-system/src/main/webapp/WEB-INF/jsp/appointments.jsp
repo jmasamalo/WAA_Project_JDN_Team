@@ -16,7 +16,7 @@
 			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
 		</div>
 		<h1>List of Appointments</h1>
-		<table class=table>
+		<table>
 			<thead>
 				<tr>
 					<th>id</th>

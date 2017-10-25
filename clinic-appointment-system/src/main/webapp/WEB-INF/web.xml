@@ -11,7 +11,6 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/spring-config.xml</param-value>
 		</init-param>
-		
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -25,7 +24,6 @@
 			/WEB-INF/config/persistence-config.xml
 		</param-value>
   	</context-param>
-  	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>

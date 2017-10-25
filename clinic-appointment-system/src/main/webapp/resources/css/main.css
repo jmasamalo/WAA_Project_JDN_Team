@@ -10,15 +10,11 @@ body {
 }
 
 #header {
-
 	height: 50px;
-
 	background-color: #fcc9f5;
-
 	border-bottom: 1px solid lightgray;
 	overflow: hidden;
 	box-sizing: border-box;
-	
 }
 
 #root-link {
@@ -45,7 +41,7 @@ body {
 }
 
 #header a {
-	line-height: 70px;
+	line-height: 47px;
 }
 
 #main {
@@ -56,13 +52,10 @@ body {
 
 #footer {
 	border-top: 1px solid lightgray;
-
 	/* background-color: whitesmoke; */
-
 	background-color: #fcc9f5;
-
 	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-bottom: 10px;
 	min-height: 150px;
 	box-sizing: border-box;
 	position:relative;

@@ -11,12 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
-import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity(name = "doctor")
 public class Doctor implements Serializable {
@@ -28,40 +22,23 @@ public class Doctor implements Serializable {
 	private long id;
 	
 	@Column(name = "first_name")
-	@NotEmpty
 	private String firstName;
 	
 	@Column(name = "last_name")
-	@NotEmpty
 	private String lastName;
 	
 	@Column(name = "email")
-	@Email
 	private String email;
 	
 	@Column(name = "speciality")
-	@NotEmpty
 	private String speciality;
 	
 	@Column(name = "enabled")
 	private boolean enabled;
 	
-	@Transient
-	MultipartFile image;
-	
-	public MultipartFile getImage() {
-		return image;
-	}
-
-	public void setImage(MultipartFile image) {
-		this.image = image;
-	}
-
-	@Valid
 	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private User user;
-
 
 	public long getId() {
 		return id;

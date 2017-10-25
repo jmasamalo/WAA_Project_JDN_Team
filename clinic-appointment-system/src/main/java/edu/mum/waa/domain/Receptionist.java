@@ -9,12 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
-import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity(name ="receptionist")
 public class Receptionist {
@@ -23,49 +17,21 @@ public class Receptionist {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotEmpty
 	@Column(name = "first_name")
 	private String firstName;
 
-	@NotEmpty
 	@Column(name = "last_name")
 	private String lastName;
-	
-	@Transient
-	MultipartFile image;
 
-	/*public Phone getPhone() {
-		return phone;
-	}
-
-	public void setPhone(Phone phone) {
-		this.phone = phone;
-	}*/
-
-	public MultipartFile getImage() {
-		return image;
-	}
-
-	public void setImage(MultipartFile image) {
-		this.image = image;
-	}
-
-	@Email
-	@Column(name = "email", unique= true)
+	@Column(name = "email")
 	private String email;
 	
 	@Column(name = "enabled")
 	private boolean enabled;
 
-	@Valid
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private User user;
-	
-	/*@Valid
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "phone_id")
-	private Phone phone;*/
 
 	public long getId() {
 		return id;

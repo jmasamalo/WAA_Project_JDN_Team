@@ -33,9 +33,9 @@
 		</p>
 		<h2>List of Prescriptions</h2>
 		<p>
-		<a href="<c:url value='prescription/addPrescription?appointmentId=${appointment.id}'/>" class="btn btn-info">Add Prescription</a>
+			<button id="add-prescription">Add Prescription</button>
 		</p>
-		<table class="table">
+		<table>
 			<thead>
 				<tr>
 					<th>Date</th>
@@ -55,18 +55,44 @@
 						<td>${prescription.medication}</td>
 						<td>${prescription.dosages}</td>
 						<td>
-							 <a class="edit" href="<c:url value='/doctor/prescription/edit/${prescription.id}'/>">Edit</a>
-							<%-- <a class="edit" data-id="${prescription.id}">Edit</a> | --%>
-							<%-- <a class="delete" data-id="${prescription.id}">Delete</a> --%>
-							 <a class="delete" href="<c:url value='/doctor/prescription/delete/${prescription.id}'/>">Delete</a>
+							<a class="edit" data-id="${prescription.id}">Edit</a> |
+							<a class="delete" data-id="${prescription.id}">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<div id="prescription-modal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<input type="hidden" id="app-path" value="<c:url value='/'/>" />
+				<input type="hidden" id="appointmentId" value="${appointment.id}" />
+				<input type="hidden" id="doctorId" value="${appointment.doctor.id}" />
+				<input type="hidden" id="patientId" value="${appointment.patient.id}" />
+				<input type="hidden" id="prescriptionId" />
+				<h1 class="modal-title">Add New Prescription</h1>
+				<p>
+					<label for="symptomps" class="field-label">Symptoms</label>
+					<textarea id="symptomps" name="symptomps" rows="3"></textarea>
+				</p>
+				<p>
+					<label for="diagnosis" class="field-label">Diagnosis</label>
+					<textarea id="diagnosis" name="diagnosis" rows="3"></textarea>
+				</p>
+				<p>
+					<label for="medication" class="field-label">Medication</label>
+					<textarea id="medication" name="medication" rows="3"></textarea>
+				</p>
+				<p>
+					<label for="dosages" class="field-label">Dosage</label>
+					<textarea id="dosages" name="dosages" rows="3"></textarea>
+				</p>
+				<button id="save-prescription">Save</button>
+			</div>
+		</div>
 	</div>
 	<tags:footer></tags:footer>
 	<tags:basejs></tags:basejs>
-	<%-- <script type="text/javascript" src="<c:url value='/resources/js/prescription.js'/>"></script> --%>
+	<script type="text/javascript" src="<c:url value='/resources/js/prescription.js'/>"></script>
 </body>
 </html>

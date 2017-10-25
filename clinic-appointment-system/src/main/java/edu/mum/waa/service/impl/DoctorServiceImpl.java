@@ -39,7 +39,7 @@ public class DoctorServiceImpl implements DoctorService {
 		user.setRole(UserRoles.ROLE_DOCTOR);
 		doctor.setEnabled(true);
 		user.setEnabled(true);
-		user.setPassword(passworEncoder.encode(user.getPassword()));		
+		user.setPassword(passworEncoder.encode(user.getPassword()));
 		return doctorRepository.save(doctor);
 	}
 	
@@ -79,21 +79,8 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public User getUserFromDoctor(long id) {
+		// TODO Auto-generated method stub
 		return doctorRepository.getUserFromDoctor(id);
 	}
-
-
-	@Override
-	public Doctor findByEmail(String email) {
-		// TODO Auto-generated method stub
-		Doctor d = doctorRepository.findByEmail(email);
-		return d;
-	}
-	@Override
-	public void delete(Doctor doctor) {
-		doctorRepository.delete(doctor);
-	}
-	
-	
 
 }
