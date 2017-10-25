@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib  uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
@@ -14,7 +15,7 @@
 	<tags:header></tags:header>
 	<div id="main">
 		<div class="page-tools">
-			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
+			<a class="go-back" href="<c:url value='/home' />"><spring:message code="GoBack" /></a>
 		</div>
 		<h3><spring:message code="Patient.Details" /></h3>
 		<hr>
@@ -42,7 +43,7 @@
 				<p>
 					<label class="field-label"><spring:message
 							code="savePatient.form.bdate.label" /></label>
-					<span>${patient.birthDate}</span>
+					<span><fmt:formatDate pattern="MM-dd-yyyy" value="${patient.birthDate}" /></span>
 				</p>
 				<p>
 					<label class="field-label"><spring:message

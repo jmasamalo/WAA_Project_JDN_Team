@@ -17,6 +17,8 @@
 	<tags:header></tags:header> 
 	<div id="main">
 		<!-- ?${_csrf.parameterName}=${_csrf.token} -->
+		<p class="text-right"><a href="?language=en" >English</a> | <a href="?language=sw" >Swahili</a></p>
+		
 		<h3><spring:message code="savePatient.form.title" /></h3> <hr />
 		<form:form modelAttribute="newPatient" action="registerPatient?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 			<div>
