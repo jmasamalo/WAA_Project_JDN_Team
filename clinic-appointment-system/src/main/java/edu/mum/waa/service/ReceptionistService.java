@@ -13,4 +13,9 @@ public interface ReceptionistService {
 	//List<Receptionist> findAll();
 	Receptionist findOne(long id);
 	User getUserFromReceptionist(long id);
+	Receptionist findByEmail(String email);
+	List<Receptionist> findAllByIdNotAndEmail(long id, String email);
+	boolean emailExists(Receptionist receptionist);
+	void delete(Receptionist receptionist);
+	
 }
