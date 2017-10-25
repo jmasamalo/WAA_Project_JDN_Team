@@ -67,10 +67,9 @@ public class DoctorController {
 			Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) throws FileNotFoundException {
 		if (result.hasErrors()) {
 			return "addDoctor";
-		}
+		}		
 		MultipartFile image = doctor.getImage();
- 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
- 		
+ 		String rootDirectory = "C:\\Users\\Niroj\\Desktop\\WAA_Project_JDN_Team\\clinic-appointment-system\\src\\main\\webapp\\resources\\images\\";
  		//isEmpty means file exists BUT NO Content
 		if(image!=null && !image.isEmpty()) {
 	 		String imageFileName = image.getOriginalFilename().toLowerCase();
@@ -83,7 +82,8 @@ public class DoctorController {
 				
 				//save before image saving to obtain the auto-generated id
 				Doctor savedDoctor = doctorService.add(doctor);
-				String destinationImage = rootDirectory+"\\resources\\images\\"+ savedDoctor.getLastName()+"_"+ savedDoctor.getId() + ".jpg";
+				//String destinationImage = rootDirectory+"\\resources\\images\\"+ savedDoctor.getLastName()+"_"+ savedDoctor.getId() + ".jpg";
+				String destinationImage = rootDirectory + savedDoctor.getLastName()+"_"+ savedDoctor.getId() + ".jpg";
 	 	 	   
 				try {
 					image.transferTo(new File(destinationImage));
@@ -93,9 +93,9 @@ public class DoctorController {
 					throw new FileNotFoundException("Unable to save file: " + image.getOriginalFilename());
 				}
 								
-				redirectAttributes.addFlashAttribute("doctor", savedDoctor);
+				redirectAttributes.addFlashAttribute("Doctor", savedDoctor);
 
-				return "redirect:/admin/doctor";
+				return "redirect:/admin/Doctor";
 
 	 		}else {
 	 			model.addAttribute("imgError", true);
@@ -107,8 +107,6 @@ public class DoctorController {
  		}
 	
 		return "addDoctor";
-		
-		
 		
 		
 		

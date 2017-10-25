@@ -6,12 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="<c:url value='/resources/css/doctor.css'/>" rel="stylesheet" />
 <title>Clinic Appointment System</title>
 <tags:basecss></tags:basecss>
 </head>
 <body>
 	<tags:header></tags:header>
-	<div id="main">
+	<div id="container" >
 		<div class="page-tools">
 			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
 		</div>
@@ -21,12 +22,12 @@
 		
 			<div id="PassportSizePhoto">
 				<p>
-					<img  class="imgRounded" width="150px" height="150px" src="<c:url value="/resources/images/${doctor.lastName}_${doctor.id}.jpg"></c:url>" alt=""/> 
+					<img id="doctorImage" src="<c:url value="/resources/images/${doctor.lastName}_${doctor.id}.jpg"></c:url>" alt="doctor Image"/> 
 				
 				</p>
 			</div>
 			
-			<div id="account-info">
+			<div id="detailForm">
 				
 				<p>
 					<label class="field-label">First Name</label>
