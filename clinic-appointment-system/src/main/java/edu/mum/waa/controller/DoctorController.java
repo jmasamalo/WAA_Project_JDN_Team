@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.mum.waa.domain.Appointment;
 import edu.mum.waa.domain.Doctor;
 import edu.mum.waa.domain.User;
+import edu.mum.waa.exceptions.ImageException;
 import edu.mum.waa.service.AppointmentService;
 import edu.mum.waa.service.DoctorService;
 
@@ -92,9 +93,9 @@ public class DoctorController {
 					throw new FileNotFoundException("Unable to save file: " + image.getOriginalFilename());
 				}
 								
-				redirectAttributes.addFlashAttribute("Doctor", savedDoctor);
+				redirectAttributes.addFlashAttribute("doctor", savedDoctor);
 
-				return "redirect:/admin/Doctor";
+				return "redirect:/admin/doctor";
 
 	 		}else {
 	 			model.addAttribute("imgError", true);

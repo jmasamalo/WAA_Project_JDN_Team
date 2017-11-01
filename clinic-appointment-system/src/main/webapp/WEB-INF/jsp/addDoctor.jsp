@@ -13,6 +13,7 @@
 </head>
 <body>
 	<tags:header></tags:header>
+	<div id="main">
 	<div>
 		<a href="?language=en">English</a>/<a href="?language=fr">French</a>
 	</div>
@@ -97,6 +98,7 @@
 							<form:input type="password" class="form-control"
 								path="user.password" id="password"
 								placeholder="Enter your Password" />
+								<!-- pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,})" -->
 							<form:errors cssClass="error" path="user.password"></form:errors>
 						</div>
 					</div>
@@ -129,6 +131,7 @@
 				</div>
 			</form:form>
 		</div>
+	</div>
 	</div>
 	<tags:basejs></tags:basejs>
 	<tags:footer></tags:footer>

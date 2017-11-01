@@ -12,7 +12,7 @@
 </head>
 <body>
 	<tags:header></tags:header>
-	
+	<div id="main">
 	<div id="container">
 			<form:form modelAttribute="addPrescription" action="" method="post" class="form-horizontal" id="prescriptionForm">
 				<form:input type="hidden" id="appointmentId" path="appointment.id" value="${appointment.id}" />
@@ -43,8 +43,8 @@
        			 
       			</div>
 			</form:form>
+		</div>
 	</div>
-	
 	<tags:basejs></tags:basejs>
 	<tags:footer></tags:footer>
 </body>

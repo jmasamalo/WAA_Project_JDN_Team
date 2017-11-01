@@ -14,6 +14,7 @@
 </head>
 <body>
 	<tags:header></tags:header>
+	<div id="main">
 	<div class="container">
 		<p class=pull-right>
 			Language : <a href="?language=en">English</a>| <a href="?language=de">Dutch</a>
@@ -82,13 +83,14 @@
 
 					<button name="submit" class="btn btn-primary pull-right">
 						<spring:message code="label.save" />
-					</button>
+					</button>&nbsp;&nbsp;&nbsp;
 					<a href="<c:url value='/admin/receptionist'/>"
 						class="btn btn-danger pull-right"><spring:message
 							code="label.cancel" /></a>
 				</form:form>
 			</div>
 		</div>
+	</div>
 	</div>
 	<tags:footer></tags:footer>
 </body>

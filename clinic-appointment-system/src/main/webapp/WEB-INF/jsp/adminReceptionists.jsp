@@ -40,10 +40,9 @@
 						<td>${receptionist.firstName}</td>
 						<td>${receptionist.lastName}</td>
 						<td>${receptionist.email}</td>
-						<td><a class="edit"
-							href="receptionist/addReceptionist/${receptionist.id}">Edit</a> |
-							<a class="delete"
-							href="receptionist/deleteReceptionist/${receptionist.id}">Delete</a>
+						<td>
+							<a class="edit btn btn-primary"	href="receptionist/addReceptionist/${receptionist.id}">Edit</a> 
+							<a class="delete btn btn-primary" href="receptionist/deleteReceptionist/${receptionist.id}">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>

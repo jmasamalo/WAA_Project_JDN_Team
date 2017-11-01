@@ -50,7 +50,7 @@ public class ReceptionistController {
 		
 		
 		MultipartFile image = receptionist.getImage();
- 		String rootDirectory = "C:\\Users\\Deepa Shrestha\\Documents\\GitHub\\WAA_Project_JDN_Team\\clinic-appointment-system\\src\\main\\webapp\\resources\\images\\";//request.getSession().getServletContext().getRealPath("/");
+ 		String rootDirectory = "C:\\\\Users\\\\Niroj\\\\Desktop\\\\WAA_Project_JDN_Team\\\\clinic-appointment-system\\\\src\\\\main\\\\webapp\\\\resources\\\\images\\\\";//request.getSession().getServletContext().getRealPath("/");
  		
  		//isEmpty means file exists BUT NO Content
 		if(image!=null && !image.isEmpty()) {

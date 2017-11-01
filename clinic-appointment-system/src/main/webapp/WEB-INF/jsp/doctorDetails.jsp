@@ -12,6 +12,7 @@
 </head>
 <body>
 	<tags:header></tags:header>
+	<div id="main">
 	<div id="container" >
 		<div class="page-tools">
 			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
@@ -49,6 +50,7 @@
 			<!-- <hr> -->
 			</p>
 		
+	</div>
 	</div>
 	<tags:footer></tags:footer>
 	<tags:basejs></tags:basejs>

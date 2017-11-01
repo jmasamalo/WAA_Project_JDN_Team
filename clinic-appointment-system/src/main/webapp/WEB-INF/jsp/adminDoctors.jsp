@@ -40,8 +40,8 @@
 						<td>${doctor.speciality}</td>
 						<td>${doctor.email}</td>
 						<td>
-							<a class="edit" href="doctor/addDoctor/${doctor.id}" >Edit</a>
-							<a class="delete" href="doctor/deleteDoctor/${doctor.id}">Delete</a>
+							<a class="edit btn btn-primary" href="doctor/addDoctor/${doctor.id}" >Edit</a>
+							<a class="delete btn btn-primary" href="doctor/deleteDoctor/${doctor.id}">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>

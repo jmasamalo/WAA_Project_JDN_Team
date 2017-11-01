@@ -13,7 +13,7 @@ body {
 
 	height: 50px;
 
-	background-color: #fcc9f5;
+	background-color: #5bc0de;
 
 	border-bottom: 1px solid lightgray;
 	overflow: hidden;
@@ -46,12 +46,18 @@ body {
 
 #header a {
 	line-height: 70px;
+	color: #1d2428;
+	font-style: italic;
 }
 
 #main {
 	min-height: calc(100vh - 200px);
 	/*https://stackoverflow.com/questions/20689575/css-margin-top-of-h1-affects-parents-margin*/
 	overflow: hidden;
+	background-color: #9edaf8;
+	background-image: url("../images/clicnic5.jpg");
+	background-position: 100%;
+	
 }
 
 #footer {
@@ -59,7 +65,7 @@ body {
 
 	/* background-color: whitesmoke; */
 
-	background-color: #fcc9f5;
+	background-color: #5bc0de;
 
 	padding-top: 5px;
 	padding-bottom: 5px;

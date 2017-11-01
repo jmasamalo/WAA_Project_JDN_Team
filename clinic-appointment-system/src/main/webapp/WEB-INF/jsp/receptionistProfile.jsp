@@ -14,7 +14,7 @@
 </head>
 <body>
 	<tags:header></tags:header>
-	<a href="/resources/images/23.png"/>
+	<div id="main">
 	<div class="container">
 		<div class="page-tools">
 			<a class="go-back" href="<c:url value='/home' />">Go Back</a>
@@ -60,6 +60,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<tags:footer></tags:footer>
 </body>

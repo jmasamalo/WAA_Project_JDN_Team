@@ -36,7 +36,6 @@
 					<label for="password" class="field-label">Password</label> <input
 						type="password" id="password" name="password" class="form-control"
 						placeholder="Password" maxlength="50" />
-					<!-- pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,})" -->
 				</div>
 				
 				<button type="submit" name="login-btn" class="btn btn-primary">Login</button>
